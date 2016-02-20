@@ -11,6 +11,7 @@
 
 package org.usfirst.frc.team5114.MyRobot2016.subsystems;
 
+import org.usfirst.frc.team5114.MyRobot2016.Robot;
 import org.usfirst.frc.team5114.MyRobot2016.RobotMap;
 import org.usfirst.frc.team5114.MyRobot2016.commands.*;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -65,14 +66,27 @@ public class BallLaunch extends Subsystem {
     }
     
     public void shoot() {
-    	double rpm = SmartDashboard.getNumber("RPM(Launcher)");
-    	talon5.setF(1023 / (rpm * 4096 / 600));
+    	double trgRPM = SmartDashboard.getNumber("RPM(Launcher)");
+    	double motorOut = talon5.getOutputVoltage() / talon5.getBusVoltage();
     	
-    	// Enable PID loop
-    	talon5.changeControlMode(TalonControlMode.Speed);
+    	talon5.setF(1023 / (trgRPM * 4096 / 600));
     	
-    	
-    	talon5.set(50.0);
+    	do {
+	    	System.out.print("\tout:");
+	    	System.out.print(motorOut);
+	    	System.out.print("\tspd:");
+	    	System.out.print(talon5.getSpeed());
+	    	
+	    	talon5.changeControlMode(TalonControlMode.Speed);
+	    	talon5.set(trgRPM);
+	    	
+	    	System.out.print("\terr:");
+	    	System.out.print(talon5.getClosedLoopError());
+	    	System.out.print("\ttrg:");
+	    	System.out.print(trgRPM);
+	    	
+	    	System.out.println();
+    	} while (!Robot.oi.controllerButton3.get());
     }
     
     public void stop() {

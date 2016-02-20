@@ -77,8 +77,6 @@ public class OI {
         controllerButton2.whenPressed(new IntakeBall());
         controllerButton3 = new JoystickButton(controller, 3);
         controllerButton3.whenPressed(new StopLaunch());
-        controllerButton4 = new JoystickButton(controller, 4);
-        controllerButton4.whenPressed(new RunServo());
         controllerButton5 = new JoystickButton(controller, 5);
         controllerButton5.whenPressed(new ReadLaunchEncodersCmd());
         
