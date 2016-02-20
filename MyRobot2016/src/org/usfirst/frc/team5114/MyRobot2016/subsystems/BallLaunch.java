@@ -60,18 +60,30 @@ public class BallLaunch extends Subsystem {
     
     public void runLauncher() {
     	percentVoltage = SmartDashboard.getNumber("Launch Power", 0.5);
+    	talon5.changeControlMode(TalonControlMode.PercentVbus);
     	talon5.set(percentVoltage);
     	
-    	System.out.println("runLauncher called");
+    	double motorOut = talon5.getOutputVoltage() / talon5.getBusVoltage();
+    	
+    	System.out.print("\tout:");
+    	System.out.print(motorOut);
+    	System.out.print("\tspd:");
+    	System.out.print(talon5.getSpeed());
+    	
+    	System.out.println();
     }
     
     public void shoot() {
     	double trgRPM = SmartDashboard.getNumber("RPM(Launcher)");
-    	double motorOut = talon5.getOutputVoltage() / talon5.getBusVoltage();
+    	double motorOut;
     	
-    	talon5.setF(1023 / (trgRPM * 4096 / 600));
+    	// There is talk about removing this PID loop system...
+    	// Others having confidence in driver ability and power solely based on voltage percent...
     	
-    	do {
+    	do
+    	{
+    		motorOut = talon5.getOutputVoltage() / talon5.getBusVoltage();
+    		
 	    	System.out.print("\tout:");
 	    	System.out.print(motorOut);
 	    	System.out.print("\tspd:");

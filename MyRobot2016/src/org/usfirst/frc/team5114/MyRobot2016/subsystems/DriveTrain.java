@@ -43,6 +43,9 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
 
     private boolean dirFlip = false;
+    private double power = 0.8;
+    
+    public void setPower(double newVal) { power = newVal; }
     
     public void flipDirection()
     {
@@ -56,20 +59,20 @@ public class DriveTrain extends Subsystem {
     		// Direction is flipped, forward is backwards
     		
     		//Right side
-    	    talon1.set(-0.5 * leftStick.getY());
+    	    talon1.set(-power * leftStick.getY());
     	    
     	    //Left Side
-    	    talon3.set(0.5 * rightStick.getY());
+    	    talon3.set(power * rightStick.getY());
     	}
     	else
     	{
     		// Normal drive, forwards is forwards
     		
     		//Right side
-    	    talon1.set(0.5 * rightStick.getY());
+    	    talon1.set(power * rightStick.getY());
     	    
     	    //Left Side
-    	    talon3.set(-0.5 * leftStick.getY());
+    	    talon3.set(-power * leftStick.getY());
     	}
     }
     
