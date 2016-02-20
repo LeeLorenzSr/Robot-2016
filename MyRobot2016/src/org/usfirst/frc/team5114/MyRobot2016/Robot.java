@@ -88,8 +88,8 @@ public class Robot extends IterativeRobot {
         RobotMap.ballLaunchTalon5.setF(0);
         RobotMap.ballLaunchTalon5.setPID(0, 0, 0);
         
-        RobotMap.ballIntakeTalon7.setF(0);
-        RobotMap.ballIntakeTalon7.setPID(0, 0, 0);
+        RobotMap.ballIntakeTalon8.setF(0);
+        RobotMap.ballIntakeTalon8.setPID(0, 0, 0);
         
         // Necessary code for camera feed
         CameraServer server = CameraServer.getInstance();

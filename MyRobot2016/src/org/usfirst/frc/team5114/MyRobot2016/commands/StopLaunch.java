@@ -38,10 +38,12 @@ public class StopLaunch extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("Stop Launch Command Called----------");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("\t-Stop Method Called...");
     	Robot.ballLaunch.stop();
     }
 
@@ -52,10 +54,12 @@ public class StopLaunch extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	System.out.println("\t-Command isFinished...");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	System.out.println("\t-Command interrupted...");
     }
 }

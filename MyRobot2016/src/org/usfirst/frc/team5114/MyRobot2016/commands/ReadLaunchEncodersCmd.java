@@ -39,11 +39,12 @@ public class ReadLaunchEncodersCmd extends Command {
 
  // Called just before this Command runs the first time
  protected void initialize() {
-	 System.out.println("Read Launch Encoders Command called");
+	 System.out.println("Read Launch Encoders Command...");
  }
 
  // Called repeatedly when this Command is scheduled to run
  protected void execute() {
+	 System.out.println("\t-Printing Encoder Velocity...");
 	 Robot.ballLaunch.printEncVel();
  }
 
@@ -54,10 +55,12 @@ public class ReadLaunchEncodersCmd extends Command {
 
  // Called once after isFinished returns true
  protected void end() {
+	 System.out.println("\t-Command isFinished...");
  }
 
  // Called when another command which requires one or more of the same
  // subsystems is scheduled to run
  protected void interrupted() {
+	 System.out.println("\t-Command interupted...");
  }
 }

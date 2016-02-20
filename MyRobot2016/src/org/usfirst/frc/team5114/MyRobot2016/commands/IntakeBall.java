@@ -38,40 +38,32 @@ public class IntakeBall extends Command {
 
  // Called just before this Command runs the first time
  protected void initialize() {
-//	 System.out.println("Intake Ball Command Called-----------");
-//	 if(Robot.ballIntake.switch0IsOff() && Robot.ballIntake.switch1IsOff())
-//	 {
-		 System.out.println("Both start, motor start is called.");
-		 Robot.ballIntake.start();
-//	 }
-//	 else
-//		 System.out.println("At least one switch is on, motor start is not called.");
+	 System.out.println("Intake Ball Command----------");
+	 System.out.println("\t-Motor Start Called...");
+	 Robot.ballIntake.start();
  }
 
  // Called repeatedly when this Command is scheduled to run
  protected void execute() {
-	 System.out.println("execute method called");
  }
 
  // Make this return true when this Command no longer needs to run execute()
  protected boolean isFinished() {
-	 System.out.println("Checking Switches: "
-			 + "Button(2)- " + Robot.oi.controllerButton2.get());
-	 boolean switch0or1 = Robot.ballIntake.getSwitch0() || Robot.ballIntake.getSwitch1();
+	 System.out.println("\t-Checking Button... "
+			 + "Button(2): " + Robot.oi.controllerButton2.get());
 	 return !Robot.oi.controllerButton2.get();
  }
 
  // Called once after isFinished returns true
  protected void end() {
-	 System.out.println("isFinished returned true, calling stop...");
+	 System.out.println("\t-isFinished returned true, calling stop...");
 	 Robot.ballIntake.stop();
  }
 
  // Called when another command which requires one or more of the same
  // subsystems is scheduled to run
  protected void interrupted() {
-	 System.out.println("Command interupted, calling stop...");
+	 System.out.println("\t-Command interupted, calling stop...");
 	 Robot.ballIntake.stop();
  }
 }
-

@@ -44,7 +44,8 @@ public class DriveTrain extends Subsystem {
 
     private boolean dirFlip = false;
     
-    public void flipDirection() {
+    public void flipDirection()
+    {
     	dirFlip = !dirFlip;
     }
     
@@ -56,11 +57,9 @@ public class DriveTrain extends Subsystem {
     		
     		//Right side
     	    talon1.set(-0.5 * leftStick.getY());
-    	    //talon2.set(-0.5 * leftStick.getY());
     	    
     	    //Left Side
     	    talon3.set(0.5 * rightStick.getY());
-    	    //talon4.set(0.5 * rightStick.getY());
     	}
     	else
     	{
@@ -68,11 +67,9 @@ public class DriveTrain extends Subsystem {
     		
     		//Right side
     	    talon1.set(0.5 * rightStick.getY());
-    	    //talon2.set(0.5 * rightStick.getY());
     	    
     	    //Left Side
     	    talon3.set(-0.5 * leftStick.getY());
-    	    //talon4.set(-0.5 * leftStick.getY());
     	}
     }
     
