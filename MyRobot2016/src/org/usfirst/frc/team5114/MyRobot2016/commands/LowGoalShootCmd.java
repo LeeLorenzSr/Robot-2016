@@ -50,8 +50,8 @@ public class LowGoalShootCmd extends Command {
  // Make this return true when this Command no longer needs to run execute()
  protected boolean isFinished() {
 	 System.out.println("\t-Checking Button... "
-			 + "Button(8): " + Robot.oi.controllerButton8.get());
-	 return !Robot.oi.controllerButton8.get();
+			 + "Button(8): " + Robot.oi.controllerButton6.get());
+	 return !Robot.oi.controllerButton6.get();
  }
 
  // Called once after isFinished returns true

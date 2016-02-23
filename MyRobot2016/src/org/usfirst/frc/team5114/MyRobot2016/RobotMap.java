@@ -35,9 +35,11 @@ public class RobotMap {
     
     public static CANTalon ballLaunchTalon5;
     
-    //public static CANTalon ...liftyThing...Talon6
+    //public static CANTalon ...liftyThing..f.Talon6
     //public static Servo ...liftyThing...Servo1
     //public static Servo ...liftyThing...Servo2
+    
+    public static VictorSP rightArmVictor1;
     
     public static VictorSP ballIntakeVictorSP7;
     
@@ -64,6 +66,9 @@ public class RobotMap {
         
         ballIntakeVictorSP7 = new VictorSP(0);
         LiveWindow.addActuator("Ball Intake", "VictorSP 0", (VictorSP) ballIntakeVictorSP7);
+        
+        rightArmVictor1 = new VictorSP(1);
+        LiveWindow.addActuator("Right Arm", "VictorSP 1", (VictorSP) rightArmVictor1);
         
         gateKeeperTalon8 = new CANTalon(8);
         LiveWindow.addActuator("Gate Keeper", "Talon 8", gateKeeperTalon8);

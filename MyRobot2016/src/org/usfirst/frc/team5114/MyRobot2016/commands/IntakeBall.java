@@ -50,9 +50,9 @@ public class IntakeBall extends Command {
 
  // Make this return true when this Command no longer needs to run execute()
  protected boolean isFinished() {
-	 System.out.println("\t-Checking Button... "
-			 + "Button(2): " + Robot.oi.controllerButton2.get());
-	 return !Robot.oi.controllerButton2.get();
+//	 System.out.println("\t-Checking Button... "
+	//		 + "Button(8): " + Robot.oi.controllerButton8.get());
+	 return !Robot.oi.controllerButton8.get();
  }
 
  // Called once after isFinished returns true

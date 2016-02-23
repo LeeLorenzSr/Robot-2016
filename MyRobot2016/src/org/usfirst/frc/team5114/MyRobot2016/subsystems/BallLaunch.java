@@ -11,6 +11,8 @@
 
 package org.usfirst.frc.team5114.MyRobot2016.subsystems;
 
+import java.util.Timer;
+
 import org.usfirst.frc.team5114.MyRobot2016.Robot;
 import org.usfirst.frc.team5114.MyRobot2016.RobotMap;
 import org.usfirst.frc.team5114.MyRobot2016.commands.*;
@@ -77,6 +79,8 @@ public class BallLaunch extends Subsystem {
     	double trgRPM = SmartDashboard.getNumber("RPM(Launcher)");
     	double motorOut;
     	
+    	Timer timer = new Timer();
+    	
     	// There is talk about removing this PID loop system...
     	// Others having confidence in driver ability and power solely based on voltage percent...
     	
@@ -98,7 +102,24 @@ public class BallLaunch extends Subsystem {
 	    	System.out.print(trgRPM);
 	    	
 	    	System.out.println();
-    	} while (!Robot.oi.controllerButton3.get());
+    	} while (!Robot.oi.controllerButton3.get() && talon5.getSpeed() < 7000.0);
+    	
+    	if (!Robot.oi.controllerButton3.get())
+    	{
+    		Robot.ballIntake.startIntake();
+    		
+    		try
+    		{
+    			timer.wait(1000);
+    		}
+    		catch(Exception e)
+    		{
+    			e.printStackTrace();
+    		}
+    		
+    		Robot.ballIntake.stop();
+    		stop();
+    	}
     }
     
     public void stop() {
