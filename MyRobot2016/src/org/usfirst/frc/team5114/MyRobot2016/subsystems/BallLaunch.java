@@ -102,9 +102,9 @@ public class BallLaunch extends Subsystem {
 	    	System.out.print(trgRPM);
 	    	
 	    	System.out.println();
-    	} while (!Robot.oi.controllerButton3.get() && talon5.getSpeed() < 7000.0);
+    	} while (!Robot.oi.controllerButton5.get() && talon5.getSpeed() < 7000.0);
     	
-    	if (!Robot.oi.controllerButton3.get())
+    	if (!Robot.oi.controllerButton5.get())
     	{
     		Robot.ballIntake.startIntake();
     		

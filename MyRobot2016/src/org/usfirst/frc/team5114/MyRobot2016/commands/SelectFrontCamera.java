@@ -34,7 +34,9 @@ public class SelectFrontCamera extends Command {
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-	//	Robot.setCamera(Robot.CameraLoc.Front);
+		System.out.println("Camera Front to be activated");
+
+		Robot.setCameraFeed(Robot.CameraLoc.Front);
 
 	}
 

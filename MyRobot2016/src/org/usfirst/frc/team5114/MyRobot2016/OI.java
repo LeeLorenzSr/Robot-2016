@@ -77,6 +77,9 @@ public class OI {
     	leftJoystick = new Joystick(0);
         rightJoystick = new Joystick(1);
         controller = new Joystick(2);
+        
+        joystickButton2 = new JoystickButton(rightJoystick, 2);
+        joystickButton2.whenPressed(new FlipDirection());
 
         //controllerButton1 = new JoystickButton(controller, 1);
         //controllerButton1.whenPressed(new ShootBall());
@@ -98,13 +101,10 @@ public class OI {
         controllerButton8 = new JoystickButton(controller, 8);
         controllerButton8.whenPressed(new IntakeBall());
         
-        joystickButton2 = new JoystickButton(rightJoystick, 2);
-        joystickButton2.whenPressed(new FlipDirection());
-        
-       controllerButton9 = new JoystickButton(controller, 9 );
-       controllerButton9.whenPressed(new SelectFrontCamera());
-       controllerButton10 = new JoystickButton(controller, 10 );
-       controllerButton10.whenPressed(new SelectRearCamera());
+        controllerButton9 = new JoystickButton(controller, 9 );
+        controllerButton9.whenPressed(new SelectFrontCamera());
+        controllerButton10 = new JoystickButton(controller, 10);
+        controllerButton10.whenPressed(new SelectRearCamera());
         
         // SmartDashboard Buttons
 
