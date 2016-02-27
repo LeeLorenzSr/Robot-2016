@@ -61,9 +61,19 @@ public class GateKeeper extends Subsystem {
 	 talon8.set(0.0);
  }
  
- public void driveLeftArm()
+ public void driveGateArm()
  {
-	 talon8.set(-Robot.oi.controller.getAxis(AxisType.kThrottle));
+	 talon8.set(-Robot.oi.controller.getAxis(AxisType.kThrottle) * gateSpeed);
+	 SmartDashboard.putNumber("Gate Arm Pos", talon8.getPosition());
+	 
+//	 ***********************************************************************
+//	 ******** ONLY ALLOW FORWARD MOVEMENT WHILE BELOW SOME CONSTANT ********
+//	 *********** AND BACKWARD MOVEMENT WHILE ABOVE SOME CONSTANT ***********
+//	 ***********************************************************************
+//	 if (talon8.getPosition() < someConstant && -Robot.oi.controller.getAxis(AxisType.kThrottle) > 0)
+//		 talon8.set(-Robot.oi.controller.getAxis(AxisType.kThrottle) * gateSpeed);
+//	 else if (talon8.getPosition() > someOtherConstant && -Robot.oi.controller.getAxis(AxisType.kThrottle) < 0)
+//		 talon8.set(-Robot.oi.controller.getAxis(AxisType.kThrottle) * gateSpeed);
  }
  
  public void initDefaultCommand() {

@@ -13,6 +13,16 @@ public class UltrasonicAnalog extends AnalogInput
 	
 	public double getInches()
 	{
-		return super.getValue() * CONVERSION_FACTOR;
+		return getValue() * CONVERSION_FACTOR;
+	}
+	
+	public double getRaw()
+	{
+		AnalogInput.setGlobalSampleRate(20);
+		
+		setOversampleBits(4);
+		setAverageBits(2);
+		
+		return getAverageVoltage();
 	}
 }

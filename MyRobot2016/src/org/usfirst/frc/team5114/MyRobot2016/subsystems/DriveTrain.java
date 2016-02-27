@@ -52,6 +52,12 @@ public class DriveTrain extends Subsystem {
     	dirFlip = !dirFlip;
     }
     
+    public void driveStraight()
+    {
+    	talon1.set(power);
+    	talon3.set(-power);
+    }
+    
     public void joystickDrive(Joystick leftStick, Joystick rightStick)
     {
     	if (dirFlip)
@@ -87,4 +93,3 @@ public class DriveTrain extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
 }
-
