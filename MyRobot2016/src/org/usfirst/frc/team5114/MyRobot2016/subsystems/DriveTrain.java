@@ -52,10 +52,24 @@ public class DriveTrain extends Subsystem {
     	dirFlip = !dirFlip;
     }
     
-    public void driveStraight()
+    public void driveNorth(double percentVolt)
     {
-    	talon1.set(power);
-    	talon3.set(-power);
+    	power = percentVolt;
+    	talon1.set(-power);
+    	talon3.set(power);
+    }
+    
+    public void driveSouth(double percentVolt)
+    {
+    	power = -percentVolt;
+    	talon1.set(-power);
+    	talon3.set(power);
+    }
+    
+    public void stop()
+    {
+    	talon1.set(0.0);
+    	talon3.set(0.0);
     }
     
     public void joystickDrive(Joystick leftStick, Joystick rightStick)
