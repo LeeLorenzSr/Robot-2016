@@ -22,12 +22,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
+import java.awt.Color;
+
 import org.usfirst.frc.team5114.MyRobot2016.auton.versions.*;
 import org.usfirst.frc.team5114.MyRobot2016.commands.*;
 import org.usfirst.frc.team5114.MyRobot2016.subsystems.*;
 
 import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.DrawMode;
 import com.ni.vision.NIVision.Image;
+import com.ni.vision.NIVision.Point;
+import com.ni.vision.NIVision.Rect;
+import com.ni.vision.NIVision.ShapeMode;
 import com.ni.vision.VisionException;
 
 /**
@@ -64,7 +70,8 @@ public class Robot extends IterativeRobot {
  	public static USBCamera cameraFront; 
  	public static USBCamera cameraBack; 
  
- 	public static CameraServer camServer = CameraServer.getInstance(); 
+ 	public static CameraServer camServer = CameraServer.getInstance();
+ 	
     /****************************************************/
     
  	public static void cameraInit()
@@ -72,15 +79,16 @@ public class Robot extends IterativeRobot {
 		try 
 		{ 
  			cameraFront = new USBCamera("cam0"); 
-			cameraBack = new USBCamera("cam1"); 
+			//cameraBack = new USBCamera("cam1"); 
  			cameraFront.openCamera(); 
- 			cameraBack.openCamera(); 
+ 			//cameraBack.openCamera(); 
  			cameraFront.startCapture(); // startCapture so that it doesn't try to take a picture before the camera is on
  			camServer.setQuality(100); 
  		} 
 		catch (VisionException e) 
 		{ 
- 			System.out.println("VISION EXCEPTION ~ " + e); 
+ 			System.out.println("VISION EXCEPTION ~ " + e);
+ 			System.out.println("\t-Occured at cameraInit()");
  		}	
  	}
     
@@ -88,43 +96,76 @@ public class Robot extends IterativeRobot {
     {
     	if (camLocation != cameraLocation)
     	{
-    		// Stop old feed
-    		switch (camLocation)
+    		try
     		{
-    		case Front:
-    			cameraFront.stopCapture();
-    			break;
-    		case Back:
-    			cameraBack.stopCapture();
-    			break;
+	    		// Stop old feed
+	    		switch (camLocation)
+	    		{
+	    		case Front:
+	    			cameraFront.stopCapture();
+	    			//cameraBack.startCapture();
+	    			break;
+	    		case Back:
+	    			//cameraBack.stopCapture();
+	    			cameraFront.startCapture();
+	    			break;
+	    		}
     		}
-    	}
-    	
-    	// Start new feed
-    	switch (cameraLocation)
-        {
-        case Front:
-        	cameraFront.startCapture();
-        	break;
-        case Back:
-        	cameraBack.startCapture();
-        	break;
-       	}
-    	
-    	camLocation = cameraLocation;
+    		catch(VisionException e)
+    		{
+    			System.out.println("VISION EXCEPTION ~ " + e);
+    			System.out.println("\t-Occured at setImage()");
+    		}
+    		camLocation = cameraLocation;
+    	}	
     }
     
     private void setImage() {
 		switch (camLocation)
         {
-        case Front:
-        	cameraFront.getImage(img);
-        	camServer.setImage(img);
-        	break;
-        case Back:
-        	cameraBack.getImage(img);
-        	camServer.setImage(img);
-        	break;
+	        case Front:
+	        	cameraFront.getImage(img);
+	        	try
+	        	{
+	        		int imgHeight = NIVision.imaqGetImageSize(img).height;
+	        		int imgWidth = NIVision.imaqGetImageSize(img).width;
+	        		int imgCenterY = imgHeight / 2;
+	        		int imgCenterX = imgWidth / 2;
+	        		
+	        		//When using hexadecimal RGB values flipped to BGR format
+	        		
+		        	/*NIVision.imaqDrawLineOnImage(img, img, DrawMode.DRAW_VALUE,
+		        			new Point(imgCenterX, imgCenterY - 50),
+		        			new Point(imgCenterX, imgCenterY + 50), 0x0000FF);
+		        	NIVision.imaqDrawLineOnImage(img, img, DrawMode.DRAW_VALUE,
+		        			new Point(imgCenterX - 50, imgCenterY),
+		        			new Point(imgCenterX + 50, imgCenterY), 0x0000FF);*/
+	        		
+		        	NIVision.imaqDrawShapeOnImage(img, img,
+		        			new Rect(imgCenterY - 50, imgCenterX - 1, 100, 3),
+		        			DrawMode.PAINT_VALUE, ShapeMode.SHAPE_RECT, 0x0000FF);
+		        	NIVision.imaqDrawShapeOnImage(img, img,
+		        			new Rect(imgCenterY - 1, imgCenterX - 50, 3, 100),
+		        			DrawMode.PAINT_VALUE, ShapeMode.SHAPE_RECT, 0x0000FF);
+		        	
+		        	NIVision.imaqDrawShapeOnImage(img, img,
+		        			new Rect(imgCenterY - 20, imgCenterX - 20, 41, 41),
+		        			DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0x0000FF);
+		        			
+		        	NIVision.imaqDrawShapeOnImage(img, img,
+		        			new Rect(imgCenterY - 5, imgCenterX - 5, 11, 11),
+		        			DrawMode.PAINT_VALUE, ShapeMode.SHAPE_OVAL, 0x0000FF);
+	        	}
+	        	catch (VisionException e)
+	        	{
+	        		System.out.println("Someting Broke!!! - contourFitCircle");
+	        	}
+	        	camServer.setImage(img);
+	        	break;
+	        case Back:
+	        	//cameraBack.getImage(img);
+	        	camServer.setImage(img);
+	        	break;
         }
 	}
     
@@ -205,9 +246,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("RPM(Launcher)", 0.0);
         SmartDashboard.putNumber("Low Goal Speed", 1.0);
         SmartDashboard.putNumber("Gate Speed", 0.5);
-        SmartDashboard.putNumber("Drive Power", 0.8);
+        SmartDashboard.putNumber("Drive Power", 0.75);
         SmartDashboard.putNumber("Sensor Distance", 0);
-        SmartDashboard.putNumber("Back Arm Speed", -0.2);
+        SmartDashboard.putNumber("Back Arm Speed", -0.35);
         SmartDashboard.putString("Camera", "Front");
         SmartDashboard.putNumber("Gate Arm Pos", 0.0);
         SmartDashboard.putNumber("Gate Input", 0.0);

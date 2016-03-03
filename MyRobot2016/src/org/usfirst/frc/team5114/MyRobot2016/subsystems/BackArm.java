@@ -42,11 +42,11 @@ public class BackArm extends Subsystem {
  // Put methods for controlling this subsystem
  // here. Call these from Commands.
  
- private double backArmSpeed = 0.5;
+ private double backArmSpeed = -0.35;
  
  public void driveBackArm()
  {
-	 backArmSpeed = SmartDashboard.getNumber("Back Arm Speed", 0.5);
+	 backArmSpeed = SmartDashboard.getNumber("Back Arm Speed", -0.35);
 	 talon6.set(Robot.oi.controller.getAxis(AxisType.kY) * backArmSpeed);
 	 //talon6.enableBrakeMode(true);
  }

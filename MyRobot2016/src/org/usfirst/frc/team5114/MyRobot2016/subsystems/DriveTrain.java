@@ -43,7 +43,7 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
 
     private boolean dirFlip = false;
-    private double power = 0.8;
+    private double power = 0.75;
     
     public void setPower(double newVal) { power = newVal; }
     
