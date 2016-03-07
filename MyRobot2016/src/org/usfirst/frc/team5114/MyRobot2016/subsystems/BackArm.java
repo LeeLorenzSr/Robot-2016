@@ -44,6 +44,23 @@ public class BackArm extends Subsystem {
  
  private double backArmSpeed = -0.35;
  
+ public void liftBackArm(double percentVolt)
+ {
+	 // check with donald to make sure that this need not be switched
+	 talon6.set(percentVolt);
+ }
+ 
+ public void dropBackArm(double percentVolt)
+ {
+	 // check with donald to make sure that this need not be switched
+	 talon6.set(-percentVolt);
+ }
+ 
+ public void stop()
+ {
+	 talon6.set(0);
+ }
+ 
  public void driveBackArm()
  {
 	 backArmSpeed = SmartDashboard.getNumber("Back Arm Speed", -0.35);

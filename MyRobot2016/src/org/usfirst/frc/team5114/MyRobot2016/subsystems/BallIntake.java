@@ -46,6 +46,16 @@ public class BallIntake extends Subsystem {
  public double getIntakeSpeed() { return intakeSpeed; }
  public double getLowGoalSpeed() { return shootSpeed; }
  
+ public void intakeBall(double percentVolt)
+ {
+	 victorSP7.set(-percentVolt);
+ }
+ 
+ public void shootLow(double percentVolt)
+ {
+	 victorSP7.set(percentVolt);
+ }
+ 
  public void startIntake()
  {
 	 intakeSpeed = SmartDashboard.getNumber("Intake Speed");

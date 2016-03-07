@@ -44,6 +44,18 @@ public class GateKeeper extends Subsystem {
  
  private double gateSpeed = 0.5;
  
+ public void liftGateArm(double percentVolt)
+ {
+	 // This is correct
+	 talon8.set(percentVolt);
+ }
+ 
+ public void dropGateArm(double percentVolt)
+ {
+	 // This is correct
+	 talon8.set(-percentVolt);
+ }
+ 
  public void lift()
  {
 	 gateSpeed = SmartDashboard.getNumber("Gate Speed");
@@ -63,7 +75,7 @@ public class GateKeeper extends Subsystem {
  
  public void driveGateArm()
  {
-	 double someConstant, someOtherConstant;
+//	 double someConstant, someOtherConstant;
 	 double speed = -Robot.oi.controller.getAxis(AxisType.kThrottle) * gateSpeed;
 	 
 	 talon8.set(speed);
