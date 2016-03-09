@@ -24,7 +24,7 @@ public class CameraSystems {
  			{
  				String camName = "cam"+Integer.toString(i);
  				System.out.println("Initializing "+camName);
- 	 			USBCamera newCamera = new USBCamera(camName); 
+ 	 			USBCamera newCamera = new USBCamera(camName);
  	 			newCamera.openCamera();
  	 			this.cameras[i] = newCamera; 				
  				System.out.println("Camera "+camName+" found on system and opened");
@@ -62,19 +62,13 @@ public class CameraSystems {
 		if ( (value >= 0) && (value < this.maxCameras) && (this.cameras[value] != null ) )
 		{
 			USBCamera currCam = getCurrentCamera();
+			
 			if ( currCam != null )
-			{
 				currCam.stopCapture();
-			}
+			
 			this.currentCamera = value;
 			currCam = getCurrentCamera();
 			currCam.startCapture();
 		}
 	}
-
-
- 	
-	
-	
-
 }
