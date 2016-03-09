@@ -34,7 +34,7 @@ public class SelectRearCamera extends Command {
 	@Override
 	protected void execute() {
 		System.out.println("Camera Back to be activated");
-		Robot.setCameraFeed(Robot.CameraLoc.Back);
+		Robot.setCameraFeed(Robot.BACK);
 
 	}
 

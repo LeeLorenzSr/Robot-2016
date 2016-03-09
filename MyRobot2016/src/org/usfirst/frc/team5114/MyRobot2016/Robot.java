@@ -65,7 +65,7 @@ public class Robot extends IterativeRobot {
     public enum CameraLoc { None, Front, Back };
     
     public static final int NONE = -1, FRONT = 0, BACK = 1;
-    public int camLocation = FRONT;
+    private static int camLocation = FRONT;
     
  	//camera stuff 
  	static boolean cameraSwitchPressedLastTime = false; 
@@ -133,7 +133,7 @@ public class Robot extends IterativeRobot {
 //    	}	
 //    }
     
- 	public void setCameraFeed(int newCamLocation)
+ 	public static void setCameraFeed(int newCamLocation)
  	{
  		if (camLocation != newCamLocation)
  			camSystem.setCurrentCameraIndex(newCamLocation);
