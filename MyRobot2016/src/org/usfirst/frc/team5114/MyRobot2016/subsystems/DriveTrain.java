@@ -90,6 +90,26 @@ public class DriveTrain extends Subsystem {
     	leftTalon.set(0.0);
     }
     
+    public double getGyroValue()
+    {
+    	return gyro.getAngle();
+    }
+    
+    public double getAccelX()
+    {
+    	return accel.getX();
+    }
+    
+    public double getAccelY()
+    {
+    	return accel.getY();
+    }
+    
+    public double getAccelZ()
+    {
+    	return accel.getZ();
+    }
+    
     public void joystickDrive(Joystick leftStick, Joystick rightStick)
     {
     	if (dirFlip)

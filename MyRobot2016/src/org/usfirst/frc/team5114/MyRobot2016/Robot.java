@@ -291,6 +291,13 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Gate Arm Pos", 0.0);
         SmartDashboard.putNumber("Gate Input", 0.0);
    	 	SmartDashboard.putNumber("Gate Output", 0.0);
+   	 	SmartDashboard.putNumber("GyroScope", 0.0);
+   	 	
+	   	SmartDashboard.putNumber("GyroScope", 0.0);
+	     
+	    SmartDashboard.putNumber("Accel (X)", 0.0);
+	    SmartDashboard.putNumber("Accel (Y)", 0.0);
+	    SmartDashboard.putNumber("Accel (Z)", 0.0);
    	 	
 	   	 try
 	     {
@@ -360,6 +367,12 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         
         setImage();
+        
+        SmartDashboard.putNumber("GyroScope", driveTrain.getGyroValue());
+        
+        SmartDashboard.putNumber("Accel (X)", driveTrain.getAccelX());
+        SmartDashboard.putNumber("Accel (Y)", driveTrain.getAccelY());
+        SmartDashboard.putNumber("Accel (Z)", driveTrain.getAccelZ());
     }
 
     /**
