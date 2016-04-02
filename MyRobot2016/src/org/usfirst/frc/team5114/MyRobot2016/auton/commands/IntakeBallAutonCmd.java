@@ -23,7 +23,7 @@ public class IntakeBallAutonCmd extends AutonCmd {
     public IntakeBallAutonCmd(double percentVolt, double seconds) {
         super(percentVolt, seconds, "Intake Ball");
     	
-    	requires(Robot.backArm);
+    	requires(Robot.ballIntake);
     }
 
     // Called just before this Command runs the first time

@@ -23,7 +23,7 @@ public class LiftBackArmAutonCmd extends AutonCmd {
     public LiftBackArmAutonCmd(double percentVolt, double seconds) {
         super(percentVolt, seconds, "Lift Back Arm");
     	
-    	requires(Robot.backArm);
+    	requires(Robot.robotLift);
     }
 
     // Called just before this Command runs the first time
@@ -33,7 +33,7 @@ public class LiftBackArmAutonCmd extends AutonCmd {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.backArm.liftBackArm(power);
+    	//Robot.backArm.liftBackArm(power);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -44,13 +44,13 @@ public class LiftBackArmAutonCmd extends AutonCmd {
     // Called once after isFinished returns true
     protected void end() {
     	super.end();
-    	Robot.backArm.stop();
+    	Robot.robotLift.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	super.interrupted();
-    	Robot.backArm.stop();
+    	Robot.robotLift.stop();
     }
 }

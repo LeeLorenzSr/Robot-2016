@@ -23,7 +23,7 @@ public class ShootLowAutonCmd extends AutonCmd {
     public ShootLowAutonCmd(double percentVolt, double seconds) {
         super(percentVolt, seconds, "Shoot Low");
     	
-    	requires(Robot.backArm);
+    	requires(Robot.ballIntake);
     }
 
     // Called just before this Command runs the first time
