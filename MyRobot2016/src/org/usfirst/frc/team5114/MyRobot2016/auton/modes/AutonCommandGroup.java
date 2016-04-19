@@ -13,6 +13,8 @@ public class AutonCommandGroup extends CommandGroup
 	public AutonCommandGroup(String cmdName)
 	{
 		cmdGroupName = cmdName;
+		
+		System.out.println("********** Auton Mode: \"" + cmdGroupName + "\" ***********");
 	}
 	
 	public String toString()

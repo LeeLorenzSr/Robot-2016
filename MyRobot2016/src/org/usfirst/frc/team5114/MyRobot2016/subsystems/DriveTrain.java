@@ -17,7 +17,9 @@ import org.usfirst.frc.team5114.MyRobot2016.RobotMap;
 import org.usfirst.frc.team5114.MyRobot2016.commands.*;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.CANSpeedController.ControlMode;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
@@ -47,7 +49,7 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
 
     private boolean dirFlip = false;
-    private double power = 0.75;
+    private double power = 0.83;
     
     public void setPower(double newVal) { power = newVal; }
     
@@ -58,7 +60,7 @@ public class DriveTrain extends Subsystem {
     
     public void driveNorth(double percentVolt)
     {
-    	// These values are correct
+    	
     	power = percentVolt;
     	rightTalon.set(-power);
     	leftTalon.set(power);
@@ -112,6 +114,10 @@ public class DriveTrain extends Subsystem {
     
     public void joystickDrive(Joystick leftStick, Joystick rightStick)
     {
+    	rightTalon.changeControlMode(TalonControlMode.PercentVbus);
+    	
+    	power = 0.83;
+    	
     	if (dirFlip)
     	{
     		// Direction is flipped, forward is backwards

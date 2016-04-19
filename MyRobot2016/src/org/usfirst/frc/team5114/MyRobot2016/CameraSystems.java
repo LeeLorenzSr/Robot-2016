@@ -36,7 +36,6 @@ public class CameraSystems {
  		}
  	}
 
-
 	public int getMaxCameras() {
 		return maxCameras;
 	}

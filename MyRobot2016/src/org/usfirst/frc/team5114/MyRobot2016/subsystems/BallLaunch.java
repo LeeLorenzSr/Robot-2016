@@ -82,13 +82,14 @@ public class BallLaunch extends Subsystem {
     	talon5.set(percentVoltage);
     	
     	double motorOut = talon5.getOutputVoltage() / talon5.getBusVoltage();
-    	
+    	/*
     	System.out.print("\tout:");
     	System.out.print(motorOut);
     	System.out.print("\tspd:");
     	System.out.print(talon5.getSpeed());
     	
     	System.out.println();
+    	*/
     }
     
     public void set(double percentVolt)
