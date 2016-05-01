@@ -41,14 +41,15 @@ public class RobotMap {
     
     public static CANTalon ballLaunchTalon5;
     
-    public static CANTalon robotLiftTalon6;
-    public static CANTalon robotLiftTalon9;
+    public static CANTalon backArmTalon6;
+    
     //public static Servo ...liftyThing...Servo1
     //public static Servo ...liftyThing...Servo2
     
     //public static VictorSP rightArmVictor1;
     
     public static VictorSP ballIntakeVictor7;
+    public static CANTalon ballIntakeTalon9;
     
     public static CANTalon gateKeeperTalon8;
     
@@ -77,11 +78,11 @@ public class RobotMap {
         ballLaunchTalon5 = new CANTalon(5);
         LiveWindow.addActuator("Ball Launch", "Talon 5", ballLaunchTalon5);
         
-        robotLiftTalon6 = new CANTalon(6);
-        LiveWindow.addActuator("Robot Lift", "Winch Talon 6", robotLiftTalon6);
+        backArmTalon6 = new CANTalon(6);
+        LiveWindow.addActuator("Robot Lift", "Winch Talon 6", backArmTalon6);
         
-        robotLiftTalon9 = new CANTalon(9);
-        LiveWindow.addActuator("Robot Lift", "Hook Talon 9", robotLiftTalon6);
+        ballIntakeTalon9 = new CANTalon(9);
+        LiveWindow.addActuator("BallIntake", "Talon 9", ballIntakeTalon9);
         
         ballIntakeVictor7 = new VictorSP(0);
         LiveWindow.addActuator("Ball Intake", "VictorSP 0", (VictorSP) ballIntakeVictor7);
@@ -97,8 +98,8 @@ public class RobotMap {
         
         gyro = new AnalogGyro(0);
         
-        //lightRelay = new Relay(0, Direction.kForward);
-        //LiveWindow.addActuator("Shooter Relay", 2, lightRelay);
+        lightRelay = new Relay(0);
+        LiveWindow.addActuator("Shooter Relay", 0, lightRelay);
 
         double voltsPerDegreePerSecond =0.007;
         gyro.setSensitivity(voltsPerDegreePerSecond);

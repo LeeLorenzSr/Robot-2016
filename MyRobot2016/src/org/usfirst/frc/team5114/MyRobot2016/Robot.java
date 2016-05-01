@@ -247,42 +247,50 @@ public class Robot extends IterativeRobot {
         cameraInit();
         
         // Smart Dashboard initiation
-        SmartDashboard.putNumber("Launch Power", 1.0);
+        SmartDashboard.putNumber("High Launch Power", 1.0);
+        SmartDashboard.putNumber("Low Launch Power", 0.7);
         SmartDashboard.putNumber("Intake Speed", 0.5);
         SmartDashboard.putNumber("RPM(Launcher)", 0.0);
         SmartDashboard.putNumber("Low Goal Speed", 1.0);
         SmartDashboard.putNumber("Gate Speed", 0.5);
         SmartDashboard.putNumber("Drive Power", 0.80);
-        SmartDashboard.putNumber("Sensor Distance", 0);
+//      SmartDashboard.putNumber("Sensor Distance", 0);
         SmartDashboard.putNumber("Back Arm Speed", 0.35);
         SmartDashboard.putString("Camera", "Front");
         SmartDashboard.putNumber("Gate Arm Pos", 0.0);
         SmartDashboard.putNumber("Gate Input", 0.0);
    	 	SmartDashboard.putNumber("Gate Output", 0.0);
-   	 	SmartDashboard.putNumber("GyroScope", 0.0);
-   	 	
-	   	SmartDashboard.putNumber("GyroScope", 0.0);
-	     
-	    SmartDashboard.putNumber("Accel (X)", 0.0);
-	    SmartDashboard.putNumber("Accel (Y)", 0.0);
-	    SmartDashboard.putNumber("Accel (Z)", 0.0);
+//   	SmartDashboard.putNumber("GyroScope", 0.0);
+//   	 	
+//	   	SmartDashboard.putNumber("GyroScope", 0.0);
+//	     
+//	    SmartDashboard.putNumber("Accel (X)", 0.0);
+//	    SmartDashboard.putNumber("Accel (Y)", 0.0);
+//	    SmartDashboard.putNumber("Accel (Z)", 0.0);
+//	    
+//	    SmartDashboard.putNumber("Hook Lift Speed", 0);
+//		SmartDashboard.putNumber("Hook Drop Speed", 0);
+//	    SmartDashboard.putNumber("POV", 0);
+//	    
+//	    SmartDashboard.putBoolean("Reset Displacement", false);
 	    
-	    SmartDashboard.putNumber("Hook Lift Speed", 0);
-		SmartDashboard.putNumber("Hook Drop Speed", 0);
-	    SmartDashboard.putNumber("POV", 0);
+	    SmartDashboard.putNumber("Outer Intake Shoot Speed", 1.0);
+	    SmartDashboard.putNumber("Outer Intake Speed", 1.0);
 	    
-	    SmartDashboard.putBoolean("Reset Displacement", false);
+	    SmartDashboard.putString("ADVICE", "DO NOT RUN PORTCULLIS AUTON!");
 	    
 	    autoChooser = new SendableChooser();
 	    autoChooser.addDefault("Moat [B]", new Moat());
 	    autoChooser.addObject("Cheval de Frise [B]", new ChevalDeFrise());
 	    autoChooser.addObject("Drawbridge [DOES NOTHING]", new Drawbridge());
 	    autoChooser.addObject("Rough Terrain [F]", new RoughTerrain());
-	    autoChooser.addObject("Portcullis [F]", new Portcullis());
+	    autoChooser.addObject("Portcullis [F] - YOU ARE ADVISED NOT TO RUN THIS", new Portcullis());
 	    autoChooser.addObject("Ramparts [B]", new Ramparts());
 	    autoChooser.addObject("Rock Wall [DOES NOTHING]", new RockWall());
 	    autoChooser.addObject("Low Bar [F]", new LowBar());
 	    autoChooser.addObject("Sally Port [DOES NOTHING]", new SallyPort());
+	    autoChooser.addObject("Rotate Test 1", new RotateTest1());
+	    autoChooser.addObject("Rotate Test 2", new RotateTest2());
 	    SmartDashboard.putData("Auton Mode", autoChooser);
    	    
     }
@@ -300,7 +308,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        // schedule the autonomous command (example)
+        // schedule the autonomous command
     	if (autonChooserIsNotBroken)
     		autonomousCommand = (Command) autoChooser.getSelected();
     	else
@@ -316,8 +324,11 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during autonomous
      */
-    public void autonomousPeriodic() {
+    public void autonomousPeriodic()
+    {
         Scheduler.getInstance().run();
+        
+        SmartDashboard.putNumber("GyroScope", driveTrain.getGyroValue());
     }
 
     public void teleopInit() {
@@ -356,7 +367,8 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during test mode
      */
-    public void testPeriodic() {
+    public void testPeriodic()
+    {
         LiveWindow.run();
     }
 }

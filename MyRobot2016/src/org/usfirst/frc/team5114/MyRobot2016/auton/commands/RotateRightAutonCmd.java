@@ -23,7 +23,7 @@ public class RotateRightAutonCmd extends AutonCmd {
     public RotateRightAutonCmd(double percentVolt, double seconds) {
         super(percentVolt, seconds, "Rotate Right");
     	
-    	requires(Robot.gateKeeper);
+    	requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time

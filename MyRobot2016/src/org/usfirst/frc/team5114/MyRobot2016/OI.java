@@ -83,8 +83,7 @@ public class OI {
         //controllerButton1 = new JoystickButton(controller, 1);
         //controllerButton1.whenPressed(new ShootBall());
         
-        //controllerButton2 = new JoystickButton(controller, 2);
-        //controllerButton2.whenPressed(new IntakeBall()); NO CMD YET
+        
         
         //controllerButton3 = new JoystickButton(controller, 3);
         //controllerButton3.whenPressed(new StopLaunch()); NO CMD YET
@@ -93,15 +92,22 @@ public class OI {
         //controllerButton4.whenPressed(new RunLauncher());
         controllerButton5 = new JoystickButton(controller, 5);
         controllerButton5.whenPressed(new StopLaunch());
+        
         controllerButton6 = new JoystickButton(controller, 6);
         controllerButton6.whenPressed(new LowGoalShootCmd());
+        
         controllerButton7 = new JoystickButton(controller, 7);
-        controllerButton7.whenPressed(new RunLauncher());
+        controllerButton7.whenPressed(new RunLauncher(BallLaunch.Power.high));
+        
+        controllerButton2 = new JoystickButton(controller, 2);
+        controllerButton2.whenPressed(new RunLauncher(BallLaunch.Power.low));
+        
         controllerButton8 = new JoystickButton(controller, 8);
         controllerButton8.whenPressed(new IntakeBall());
         
         controllerButton9 = new JoystickButton(controller, 9);
         controllerButton9.whenPressed(new SelectFrontCamera());
+        
         controllerButton10 = new JoystickButton(controller, 10);
         controllerButton10.whenPressed(new SelectRearCamera());
         

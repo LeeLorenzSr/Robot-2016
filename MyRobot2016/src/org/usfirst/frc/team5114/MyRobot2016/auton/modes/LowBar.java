@@ -50,9 +50,13 @@ public class LowBar extends CommandGroup {
     	
     	System.out.println("---------------Auton Mode: LOW BAR-----------------");
     	//set back to 0.5
-    	addSequential(new DropGateArmAutonCmd(0.5, 1.7));
+    	addSequential(new DropGateArmAutonCmd(0.5, 1.5));
     	
     	addSequential(new DriveNorthAutonCmd(0.5, 2.0));
     	
+    	addSequential(new LiftGateArmAutonCmd(0.5, 1.5));
+    	
+//    	addSequential(new HalfDriveAutonCmd(0.5, 0.5, DriveTrain.Side.right));
+//    	addSequential(new HalfDriveAutonCmd(-0.5, 0.5, DriveTrain.Side.left));
     }
 }
